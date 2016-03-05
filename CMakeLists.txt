@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 project(bsd-xdr C)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-add_library(bsd-xdr STATIC lib/xdr.c lib/xdr_array.c lib/xdr_float.c lib/xdr_mem.c lib/xdr_private.c lib/xdr_private.h lib/xdr_rec.c lib/xdr_reference.c lib/xdr_sizeof.c lib/xdr_stdio.c rpc/types.h rpc/xdr.h)
-
+add_library(xdr SHARED lib/xdr.c lib/xdr_array.c lib/xdr_float.c lib/xdr_mem.c lib/xdr_private.c lib/xdr_private.h lib/xdr_rec.c lib/xdr_reference.c lib/xdr_sizeof.c lib/xdr_stdio.c rpc/types.h rpc/xdr.h lib/libxdr.def)
+target_link_libraries(xdr ws2_32.lib)
 
 file(GLOB TEST_SOURCES src/test/*_test.c)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/test)
